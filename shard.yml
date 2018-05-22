@@ -1,0 +1,13 @@
+name: rich-crystal
+version: 0.1.0
+
+authors:
+  - AnanaGame <gameanana@gmail.com>
+
+targets:
+  rich-crystal:
+    main: src/rich-crystal.cr
+
+crystal: 0.23.1
+
+license: MIT
