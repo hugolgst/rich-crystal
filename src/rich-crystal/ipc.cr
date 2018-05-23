@@ -38,7 +38,7 @@ module Rich::Crystal
     # the JSON response
     def send(opcode : Opcode, payload : String) : String
       # Write the opcode and the payload size as LitteEndian
-      @socket.write_bytes(opcode, IO::ByteFormat::LittleEndian)
+      @socket.write_bytes(opcode.value, IO::ByteFormat::LittleEndian)
       @socket.write_bytes(payload.size, IO::ByteFormat::LittleEndian)
 
       # And then add the payload
