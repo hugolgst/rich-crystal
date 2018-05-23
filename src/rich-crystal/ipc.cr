@@ -1,6 +1,6 @@
 require "socket"
 
-module Rich::Crystal
+module RichCrystal
   class Ipc
     # Enumerate the differents opcodes
     enum Opcode : Int32
