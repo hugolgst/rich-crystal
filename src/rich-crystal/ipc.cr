@@ -2,6 +2,12 @@ require "socket"
 
 module Rich::Crystal
   class Ipc
+    # Enumerate the differents opcodes
+    enum Opcode : Int32
+      Handshake = 0
+      Frame = 1
+    end
+
     # Create the UNIXSocket with ipc_path and socket name 'discord-ipc-0'
     def initialize
       @socket = UNIXSocket.new("#{ipc_path}discord-ipc-0")
@@ -30,7 +36,7 @@ module Rich::Crystal
 
     # Send a payload to the UNIXSocket with the opcode, returns
     # the JSON response
-    def send(opcode : Int32, payload : String) : String
+    def send(opcode : Opcode, payload : String) : String
       # Write the opcode and the payload size as LitteEndian
       @socket.write_bytes(opcode, IO::ByteFormat::LittleEndian)
       @socket.write_bytes(payload.size, IO::ByteFormat::LittleEndian)
