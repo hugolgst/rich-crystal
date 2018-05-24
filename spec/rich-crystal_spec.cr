@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-describe Rich::Crystal do
+describe RichCrystal do
   # TODO: Write tests
 
   it "works" do
