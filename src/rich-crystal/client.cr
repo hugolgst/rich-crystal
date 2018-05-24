@@ -8,53 +8,35 @@ module RichCrystal
       @ipc = RichCrystal::Ipc.new
     end
 
-    # Log the Rich-crystal client by sending a first handshake
+    # Log the Rich-crystal client by sending a first handshake to the IPC
     def login
-      # Generate the handshake JSON payload
-      payload = JSON.build do |json|
-        json.object do
-          # Discord RPC setted to 1
-          json.field "v", 1
-          json.field "client_id", @client_id.to_s
-          # Set the current timestamp
-          json.field "nonce", Time.now.to_s("%s")
-        end
-      end
+      # Generate the payload in JSON
+      payload = {
+        "v"         => 1,
+        "client_id" => "#{@client_id}",
+        "nonce"     => Time.now.to_s("%s"),
+      }.to_json
 
-      # Send the handshake
+      # Send the handshake to the IPC
       @ipc.send(RichCrystal::Ipc::Opcode::Handshake, payload)
     end
 
-    # Set the rich presence activity with activity arugments
-    def activity(**activity)
-      # Generate the frame JSON payload
-      payload = JSON.build do |json|
-        json.object do
-          # Set cmd as SET_ACTIVITY for set Rich Presence activity
-          json.field "cmd", "SET_ACTIVITY"
-          json.field "args" do
-            payload_args(json, activity)
-          end
-          # Set the current timestamp
-          json.field "nonce", Time.now.to_s("%s")
-        end
-      end
-      @ipc.send(RichCrystal::Ipc::Opcode::Frame, payload)
-    end
+    # Retrieves a Hash of Strings for sending the frame payload to the IPC
+    # with discord-rich-presence parameters (see here https://github.com/discordapp/discord-rpc/blob/master/documentation/hard-mode.md#new-rpc-command)
+    # and return the JSON response
+    def activity(activity : Hash(String, String))
+      # Generate the payload in JSON
+      payload = {
+        "cmd"  => "SET_ACTIVITY",
+        "args" => {
+          "pid"      => Process.pid,
+          "activity" => activity,
+        },
+        "nonce" => Time.now.to_s("%s"),
+      }.to_json
 
-    # Create activity arguments as JSON
-    private def payload_args(json, activity : NamedTuple)
-      json.object do
-        # Set the process pid
-        json.field "pid", Process.pid
-        # Here are the activity arguments
-        json.field "activity" do
-          json.object do
-            json.field "state", activity[:state] unless activity[:state].nil?
-            json.field "details", activity[:details] unless activity[:details].nil?
-          end
-        end
-      end
+      # Send the frame to the IPC
+      @ipc.send(RichCrystal::Ipc::Opcode::Frame, payload)
     end
   end
 end
