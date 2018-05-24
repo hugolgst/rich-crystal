@@ -1,6 +1,7 @@
+![build](https://api.travis-ci.org/AnanaGame/rich-crystal.svg?branch=master)
 # rich-crystal
 
-TODO: Write a description here
+Crystal extension for Discord Rich Presence
 
 ## Installation
 
