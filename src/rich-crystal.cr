@@ -1,5 +1,5 @@
 require "./rich-crystal/*"
 
-module Rich::Crystal
+module RichCrystal
   # TODO Put your code here
 end
