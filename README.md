@@ -7,9 +7,11 @@ Crystal extension for Discord Rich Presence
 
 Add this to your application's `shard.yml`:
 
+```yml
 dependencies:
   rich-crystal:
     github: AnanaGame/rich-crystal
+```
 
 ## Usage
 
