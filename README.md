@@ -5,15 +5,15 @@ Crystal extension for Discord Rich Presence
 
 ## Installation
 
-TODO: Write installation instructions here
+Add this to your application's `shard.yml`:
+
+dependencies:
+  rich-crystal:
+    github: AnanaGame/rich-crystal
 
 ## Usage
 
 TODO: Write usage instructions here
-
-## Development
-
-TODO: Write development instructions here
 
 ## Contributing
 
