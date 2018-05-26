@@ -15,7 +15,23 @@ dependencies:
 
 ## Usage
 
-TODO: Write usage instructions here
+You must create a Client with your Discord Rich Presence application id :
+```crystal
+client = RichCrystal::Client.new(174839413294239_u64)
+```
+
+Then by calling login you send the first handshake :
+```crystal
+client.login
+```
+
+And you can set the Rich Presence activity (parameters can be found [here](https://github.com/discordapp/discord-rpc/blob/master/documentation/hard-mode.md#new-rpc-command) :
+```crystal
+client.activity({
+  state => "Running on Crystal",
+  details => "Heyyyy",
+})
+```
 
 ## Contributing
 
