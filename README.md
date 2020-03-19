@@ -1,5 +1,4 @@
-![build](https://api.travis-ci.org/AnanaGame/rich-crystal.svg?branch=master)
-# rich-crystal
+# rich-crystal ![https://travis-ci.org/hugolgst/rich-crystal](https://api.travis-ci.org/hugolgst/rich-crystal.svg?branch=master)
 
 Crystal extension for Discord Rich Presence
 
@@ -10,7 +9,7 @@ Add this to your application's `shard.yml`:
 ```yml
 dependencies:
   rich-crystal:
-    github: AnanaGame/rich-crystal
+    github: hugolgst/rich-crystal
 ```
 
 ## Usage
@@ -35,7 +34,7 @@ client.activity({
 
 ## Contributing
 
-1. Fork it (https://github.com/ananagame/rich-crystal/fork)
+1. Fork it (https://github.com/hugolgst/rich-crystal/fork)
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -43,4 +42,4 @@ client.activity({
 
 ## Contributors
 
-- [[AnanaGame]](https://github.com/ananagame) - creator, maintainer
+- [hugolgst](https://github.com/hugolgst) - creator, maintainer
